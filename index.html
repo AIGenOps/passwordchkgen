@@ -1,1 +1,129 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyzer</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <!-- Header with Theme Toggle -->
+        <header>
+            <div class="header-content">
+                <h1>Password Strength Analyzer</h1>
+                <p class="subtitle">Check how secure your password is</p>
+            </div>
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="card">
+            
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="password-input-wrapper">
+                    <input type="password" id="passwordInput" placeholder="Enter your password..." autocomplete="off">
+                    <div class="input-actions">
+                        <button id="togglePassword" aria-label="Toggle password visibility">
+                            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                        </button>
+                        <button id="copyPassword" aria-label="Copy password">
+                            <i class="fa-regular fa-copy" id="copyIcon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Stats (Entropy & Crack Time) -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Entropy</span>
+                    <span class="stat-value" id="entropyValue">0 bits</span>
+                    <span class="stat-desc">Higher = Harder to guess</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Est. Crack Time</span>
+                    <span class="stat-value" id="crackTime">Instant</span>
+                    <span class="stat-desc">Offline fast attack</span>
+                </div>
+            </div>
+
+            <!-- Strength Meter -->
+            <div class="strength-meter-container">
+                <div class="strength-meter-bg">
+                    <div class="strength-meter-fill" id="strengthBar"></div>
+                </div>
+                <p id="strengthText">Start typing...</p>
+            </div>
+
+            <!-- Live Checklist -->
+            <div class="feedback-section">
+                <ul class="requirements-list">
+                    <li id="req-length" class="requirement"><i class="fa-regular fa-circle"></i> At least 8 characters</li>
+                    <li id="req-lower" class="requirement"><i class="fa-regular fa-circle"></i> Lowercase letters</li>
+                    <li id="req-upper" class="requirement"><i class="fa-regular fa-circle"></i> Uppercase letters</li>
+                    <li id="req-number" class="requirement"><i class="fa-regular fa-circle"></i> Numbers</li>
+                    <li id="req-special" class="requirement"><i class="fa-regular fa-circle"></i> Symbols</li>
+                    <li id="req-common" class="requirement"><i class="fa-regular fa-circle"></i> Not a common password</li>
+                </ul>
+            </div>
+
+            <!-- Suggestions -->
+            <div id="suggestionBox" class="suggestion-box hidden">
+                <p><i class="fa-solid fa-lightbulb"></i> <strong>Tip:</strong> Try these stronger variations:</p>
+                <div class="suggestion-tags" id="suggestionTags">
+                    <!-- JS will inject tags here -->
+                </div>
+            </div>
+
+            <!-- Advanced Generator Controls -->
+            <div class="generator-section">
+                <h3>Advanced Generator</h3>
+                
+                <div class="generator-row">
+                    <label>Length: <span id="lengthValue">16</span></label>
+                    <input type="range" id="lengthSlider" min="8" max="32" value="16">
+                </div>
+
+                <div class="toggles-grid">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="opt-upper" checked> Uppercase (A-Z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="opt-lower" checked> Lowercase (a-z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="opt-number" checked> Numbers (0-9)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="opt-symbol" checked> Symbols (!@#)
+                    </label>
+                </div>
+
+                <button id="generateBtn" class="btn-primary">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Password
+                </button>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Built by AIGenOps . Security Awareness Tool</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
